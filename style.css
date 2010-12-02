@@ -1,0 +1,162 @@
+body {
+	background: #000;
+	overflow: hidden;
+}
+
+code { font-size: 16px; }
+    
+    #stage {
+      width: 100%;
+      height: 500px;
+      -webkit-transform-style: preserve-3d;
+      /* Her settes dybde pŒ "scenen" */
+      -webkit-perspective: 2000; /* For compatibility with iPhone 3.0, we leave off the units here */
+      /* Her gj¿r vi klar for animasjoner, alle animasjoner pŒ dette elementet er satt til Œ vare i 1 sekund */
+      -webkit-transition-duration: 1s;
+    }
+    /* Vi vil animere dybden pŒ scenen, som gj¿r at alt blir flyttet bakover med en litt kul effekt */
+    #stage.animation { -webkit-perspective: 7000; }
+    
+    #shape {
+      position: relative;
+      top: 55px;
+      margin: 0 auto;
+      height: 450px;
+      width: 850px;
+      /* Denne er viktig for at elementer inni her skal fŒ en 3d-effekt nŒr de flytter seg i Z-aksen */
+      -webkit-transform-style: preserve-3d;
+      -webkit-transition-duration: 2s;
+    }
+    
+    .page {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border: 1px solid white;
+      -webkit-box-sizing: border-box;
+      font-family: Geneva;
+      color: black;
+      background-color: rgb(240, 240, 240);
+      -webkit-box-shadow: inset 0 0 10px #000;
+      -webkit-transition-duration: 0.2s;
+      -webkit-transform-style: preserve-3d;
+    }
+    	
+    	.slide { padding: 5px 20px; }
+    	
+    	.page .shadow {
+    		position: absolute;
+    		top: 450px;
+    		height: 900px;
+    		width: 100%;
+    		background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #000), color-stop(1, rgb(240, 240, 240)));
+    		-webkit-transform: rotateX(90deg);
+    		-webkit-transform-origin: top;
+    	}
+    
+    /* Her roterer vi "objektet" vŒrt 90 grader for hver gang */	
+    .transition1 #shape { -webkit-transform: rotateY(-90deg); }
+    .transition2 #shape { -webkit-transform: rotateY(-180deg); }
+    .transition3 #shape { -webkit-transform: rotateY(-270deg); }
+    
+    
+    /* ---------- pages ------------- */
+    #page1 { -webkit-transform: translateZ(425px); }
+    #page2 { -webkit-transform: rotateY(90deg) translateZ(425px); }   /* translateZ flytter objekter vekk fra #shape's midtpunkt */
+    #page3 { -webkit-transform:  rotateY(180deg) translateZ(425px); } /* Dette mŒ vi gj¿re for at "veggene" skal treffes kant i kant */
+    #page4 { -webkit-transform: rotateY(270deg) translateZ(425px); }
+    
+    
+    /* CSS for elementer inni slidsa */
+    
+    #introStage {
+    	width: 202px;
+    	height: 202px;
+    	margin-left: 20px;
+    	-webkit-perspective: 400;
+    	position: relative;
+    }
+    	#introShape {
+    		height: 100%;
+    		width: 100%;
+    		-webkit-transform-style: preserve-3d;
+    		-webkit-transition-duration: 2s;
+    		position: relative;
+    	}
+    	#introShape.rotateX { -webkit-transform: rotate3d(1,0,0,20deg); }         /* rotate3d lar deg rotere rundt flere akser samtidig */
+    	#introShape.rotateY { -webkit-transform: rotate3d(0,1,0,20deg); }         /* med 1 og 0 setter man hvilke akser som skal roteres */
+    	#introShape.rotateZ { -webkit-transform: rotate3d(0,0,1,20deg); }         /* og den siste parameteren sier hvor mye rotasjon */
+    	#introShape.rotateX.rotateY { -webkit-transform: rotate3d(1,1,0,20deg); } /* man kunne ogsŒ satt rotateX(20deg) rotateY(20deg) */
+    	#introShape.rotateY.rotateZ { -webkit-transform: rotate3d(0,1,1,20deg); } /* som ville fŒtt akkurat samme effekt */
+    	#introShape.rotateX.rotateZ { -webkit-transform: rotate3d(1,0,1,20deg); }
+    	#introShape.rotateX.rotateY.rotateZ { -webkit-transform: rotate3d(1,1,1,20deg); }
+    	
+    		#introShape > div {
+    			background-color: rgba(0,0,0,0.4);
+    			border: 1px solid rgba(0,0,0,0.4);
+    			position: absolute;
+    			-webkit-transition-duration: 2s;
+    		}
+    		#introShape > .ver { height: 200px; }
+    		#introShape.show > .ver { width: 200px; }
+    		#introShape > .hor { width: 200px; }
+    		#introShape.show > .hor { height: 200px; }
+    		
+    		#introVenstre {
+    			left: 0;
+    			-webkit-transform-origin: left;
+    			-webkit-transform: rotateY(90deg);
+    		}
+    		
+    		#introHoyre {
+    			right: 0;
+    			-webkit-transform-origin: right;
+    			-webkit-transform: rotateY(-90deg);
+    		}
+    		
+    		#introOppe {
+    			-webkit-transform-origin: top;
+    			-webkit-transform: rotateX(-90deg);
+    		}
+    		
+    		#introNede {
+    			bottom: 0;
+    			-webkit-transform-origin: bottom;
+    			-webkit-transform: rotateX(90deg);
+    		}
+    		
+    		#introBack {
+    			height: 100%;
+    			width: 100%;
+    			-webkit-transform: translateZ(-200px);
+    		}
+    
+    #page4 ul li {
+    	-webkit-transform-style: preserve-3d;
+    	-webkit-perspective: 800;
+    }
+		#page4 ul li > div { -webkit-transition-duration: 5s; }
+    
+	#cssProp {
+		color: #000;
+		cursor: pointer;
+	}
+		#cssProp.clicked1 div { color: #f00; }
+		#cssProp.clicked2 div { text-shadow: 0 0 10px #00f; }
+		#cssProp.clicked3 div { -webkit-transform: rotateY(360deg) rotateX(180deg) rotateZ(180deg); }
+		
+	#cssHover div { -webkit-transform: translateZ(0); }
+	#cssHover:hover div { -webkit-transform: translateZ(400px) translateX(300px); }
+    
+    #easing li { -webkit-transition-duration: 3s; cursor: pointer; }
+    #easing li.animate { -webkit-transform: translateX(300px); }
+    
+    #easing li:nth-child(1) { -webkit-transition-timing-function: linear }
+    #easing li:nth-child(2) { -webkit-transition-timing-function: ease-in; }
+    #easing li:nth-child(3) { -webkit-transition-timing-function: ease-out; }
+    #easing li:nth-child(4) { -webkit-transition-timing-function: ease-in-out; }
+    
+    
+    
+    
+    

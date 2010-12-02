@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>CSS3 anim</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+		<script src="script.js"></script>
+	</head>
+
+	<body>
+		<div id="stage">
+			<div id="shape">
+			
+				<div id="page1" class="page">
+					<div class="slide">
+						<h1>CSS3 3D</h1>
+						<ul>
+							<li>Oppsett av "scene"</li>
+							<li>Akser</li>
+							<li>Animasjoner</li>
+						</ul>
+					</div>
+					<div class="shadow"></div>
+				</div>
+				
+				<div id="page2" class="page">
+					<div class="slide">
+						<h1>Oppsett av "scene"</h1>
+						<code><pre>
+&lt;div id="stage">
+    &lt;div id="shape">
+        &lt;div id="venstre">&lt;/div>
+        &lt;div id="hoyre">&lt;/div>
+        &lt;div id="oppe">&lt;/div>
+        &lt;div id="nede">&lt;/div>
+    &lt;/div>
+&lt;/div>
+						</pre></code>
+						<ul>
+							<li><code>#stage</code> - setter dybde</li>
+							<li><code>#shape</code> - lar deg flytte hele "prosjektet"</li>
+							<li>Elementer inni der, kan nå flyttes i <code>#shape</code> sine akser</li>
+						</ul>
+					</div>
+					<div class="shadow"></div>
+				</div>
+				
+				<div id="page3" class="page knockdown">
+					<div class="slide">
+						<h1>Akser</h1>
+						<ul>
+							<li>Vi er vant til å jobbe i X og Y</li>
+							<li>Introducing: Z</li>
+						</ul>
+						<button id="showZ">vis Z</button>
+						<div id="introStage">
+							<div id="introShape">
+								<div id="introVenstre" class="ver"></div>
+								<div id="introHoyre" class="ver"></div>
+								<div id="introOppe" class="hor"></div>
+								<div id="introNede" class="hor"></div>
+								<div id="introBack"></div>
+							</div>
+						</div>
+						<button id="rotX">roter X</button>
+						<button id="rotY">roter Y</button>
+						<button id="rotZ">roter Z</button>
+						<h4>Husk å vis størrelser langs aksene</h4>
+					</div>
+					<div class="shadow"></div>
+				</div>
+				
+				<div id="page4" class="page knockdown">
+					<div class="slide">
+						<h1>Animasjoner</h1>
+						<ul>
+							<li>Klargjøring for animasjon: <code>-webkit-transition-duration: Xs</code></li>
+							<li>Fyre animasjoner
+								<ul>
+									<li>js/jQuery (<code>addClass</code>)</li>
+									<li>css (<code>:hover</code>)</li>
+								</ul>
+							</li>
+							<li id="cssProp"><div>Hvilken som helst CSS property</div></li>
+							<li id="cssHover"><div>CSS hover</div></li>
+							<li id="easing">Easing
+								<ul>
+									<li>Vanlig</li>
+									<li>Ease-in</li>
+									<li>Ease-out</li>
+									<li>Ease-out-in</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="shadow"></div>
+				</div>
+				
+			</div>
+		</div>
+
+	</body>
+</html>
